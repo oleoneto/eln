@@ -1,7 +1,5 @@
 import click
-# from eln.commands import
-# from eln.commands import
-# from eln.commands import
+from eln.commands.news import news
 
 
 class AliasedGroup(click.Group):
@@ -27,7 +25,7 @@ def main(ctx):
     """
         eln: by Leo Neto (Lehvitus ÖU)
 
-        A command-line tool for quick math computations
+        A command-line tool for quick access to web services
     """
 
     # Note for contributors:
@@ -42,13 +40,7 @@ def main(ctx):
     #       eln create create-sub-command`
 
 
-# main.add_command(addition)
-# main.add_command(subtraction)
-# main.add_command(multiplication)
-# main.add_command(division)
-# main.add_command(conversion)
-# main.add_command(weather)
-# main.add_command(time)
+main.add_command(news)
 
 if __name__ == '__main__':
     main()

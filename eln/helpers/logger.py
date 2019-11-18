@@ -1,13 +1,13 @@
 import click
 
 
-def log_error(**kwargs):
-    click.secho(**kwargs, fg='red')
+def log_error(message, **kwargs):
+    click.secho(message=message, **kwargs, fg='red')
 
 
-def log_success(**kwargs):
-    click.secho(**kwargs, fg='green')
+def log_success(message, **kwargs):
+    click.secho(message=message, **kwargs, fg='green')
 
 
-def log_standard(**kwargs):
-    click.secho(**kwargs)
+def log_standard(message, **kwargs):
+    click.secho(message=message, **kwargs)

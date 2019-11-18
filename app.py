@@ -1,5 +1,6 @@
 import click
 from eln.commands.news import news
+from eln.commands.azuracast import azuracast
 
 
 class AliasedGroup(click.Group):
@@ -20,6 +21,7 @@ class AliasedGroup(click.Group):
 
 
 @click.command(cls=AliasedGroup)
+@click.version_option()
 @click.pass_context
 def main(ctx):
     """
@@ -41,6 +43,7 @@ def main(ctx):
 
 
 main.add_command(news)
+main.add_command(azuracast)
 
 if __name__ == '__main__':
     main()

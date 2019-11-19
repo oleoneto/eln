@@ -5,61 +5,49 @@ A command-line tool for quick math computations
 ![PyPI - License](https://img.shields.io/pypi/l/eln?style=flat-square)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/eln?style=flat-square)
 ![PyPI](https://img.shields.io/pypi/v/eln?style=flat-square)
-![Bitbucket Pipelines](https://img.shields.io/github/pipelines/lehvitus/eln/development?style=flat-square)
+![Bitbucket Pipelines](https://img.shields.io/bitbucket/pipelines/lehvitus/eln/development?style=flat-square)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/eln?style=flat-square)
 
 - [eln](#eln)
     - [Requirements](#requirements)
     - [Installation](#installation)
     - [Commands](#commands)
-        - [Addition](#addition)
-            - [Add](#add)
-            - [Added to](#added-to)
-            - [Plus](#plus)
-        - [Subtraction](#subtraction)
-            - [Subtract](#subtract)
-            - [Subtracted from](#subtracted-from)
-            - [Take](#take)
-            - [Minus](#minus)
-        - [Division](#division)
-            - [Divide](#divide)
-            - [Divided by](#divided-by)
-        - [Multiplication](#multiplication)
-            - [Times](#times)
-            - [Multiplied by](#multiplied-by)
-    - [To Do](#to-do)
+        - [Azuracast](#azuracast)
+        - [DigitalOcean](#digitalocean)
+        - [News API](#news-api)
+        - [Stub](#stub)
+    - [To Do](#issues)
     - [Pull requests](#pull-requests)
     - [License](#license)
 
 ## Requirements
+[Check requirements](Pipfile).
 
 ## Installation
+```bash
+pip install eln
+```
 
 ## Commands
-### Addition
-- add
-- added-to
-- plus
+### Azuracast
+Manage your Azuracast installation.
 
-### Subtraction
-- subtract
-- subtracted-from
-- take
-- minus
+### DigitalOcean
+DigitalOcean API Wrapper.
 
-### Division
-- division
-- divide
-- divided-by
+### News API
+News powered by [NewsAPI.org](https://newsapi.org)
 
-### Multiplication
-- times
-- multiplied-by
+### Stub
+Stub out sample projects.
 
-## To Do
+## Issues
+[Check out issues](https://github.com/lehvitus/eln/issues)
 
 ## Pull Requests
-Found a bug? See a typo? Have an idea for new command? Feel free to submit a pull request with your contributions. They are much welcome.
+Found a bug? See a typo? Have an idea for new command? 
+Feel free to submit a [pull request](https://github.com/lehvitus/eln/issues)
+with your contributions. They are much welcome.
 
 
 ## License

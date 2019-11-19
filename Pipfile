@@ -13,7 +13,6 @@ tox = "==3.14.0"
 Jinja2 = "==2.10.3"
 requests = "*"
 pyttsx3 = "*"
-tqdm = "*"
 python-digitalocean = "*"
 python-dotenv = "*"
 

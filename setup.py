@@ -36,7 +36,9 @@ setup(
         'pyttsx3',
         'jinja2',
         'inflection',
-        'tox'
+        'tox',
+        'python-digitalocean',
+        'python-dotenv'
     ],
     zip_safe=False,
     include_package_data=True,

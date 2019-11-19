@@ -2,6 +2,11 @@ import click
 from eln.commands.news import news
 from eln.commands.azuracast import azuracast
 from eln.commands.stub import stub
+from eln.commands.digitalocean import digitalocean
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 __author__ = 'Leo Neto'
@@ -49,6 +54,7 @@ def main(ctx):
 main.add_command(news)
 main.add_command(azuracast)
 main.add_command(stub)
+main.add_command(digitalocean)
 
 if __name__ == '__main__':
     main()

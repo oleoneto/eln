@@ -1,6 +1,10 @@
 import click
 from eln.commands.news import news
 from eln.commands.azuracast import azuracast
+from eln.commands.stub import stub
+
+
+__author__ = 'Leo Neto'
 
 
 class AliasedGroup(click.Group):
@@ -44,6 +48,7 @@ def main(ctx):
 
 main.add_command(news)
 main.add_command(azuracast)
+main.add_command(stub)
 
 if __name__ == '__main__':
     main()

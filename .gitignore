@@ -78,7 +78,6 @@ credentials.py
 credentials*
 keys*
 secrets*
-*pipelines.yml
 
 # Flask stuff:
 instance/

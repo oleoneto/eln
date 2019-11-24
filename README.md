@@ -5,7 +5,6 @@ A command-line tool for quick math computations
 ![PyPI - License](https://img.shields.io/pypi/l/eln?style=flat-square)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/eln?style=flat-square)
 ![PyPI](https://img.shields.io/pypi/v/eln?style=flat-square)
-![Bitbucket Pipelines](https://img.shields.io/bitbucket/pipelines/lehvitus/eln/development?style=flat-square)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/eln?style=flat-square)
 
 - [eln](#eln)

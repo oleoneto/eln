@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="eln",
-    version="0.0.0-beta.2",
+    version="0.0.0-beta.3",
     author="Leo Neto",
     author_email="apps@lehvitus.com",
     url="https://github.com/lehvitus/eln",
@@ -20,7 +20,8 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        'Operating System :: OS Independent',
+        'Environment :: MacOS X',
+        'Operating System :: MacOS',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
@@ -32,13 +33,13 @@ setup(
     license="BSD",
     install_requires=[
         'Click==7.0',
-        'requests',
-        'pyttsx3',
-        'jinja2',
-        'inflection',
-        'tox',
-        'python-digitalocean',
-        'python-dotenv'
+        'requests==2.22.0',
+        'pyttsx3==2.71',
+        'jinja2==2.10.3',
+        'inflection==0.3.1',
+        'python-digitalocean==1.14.0',
+        'python-dotenv==0.10.3',
+        'tox'
     ],
     zip_safe=False,
     include_package_data=True,

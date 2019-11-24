@@ -34,7 +34,7 @@ setup(
     install_requires=[
         'Click==7.0',
         'requests==2.22.0',
-        'pyttsx3==2.71',
+        'pyttsx3==2.71;platform_system=="MacOS"',
         'jinja2==2.10.3',
         'inflection==0.3.1',
         'python-digitalocean==1.14.0',

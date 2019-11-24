@@ -1,8 +1,9 @@
-name: Upload Python Package
+name: upload-python-package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:

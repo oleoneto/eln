@@ -39,7 +39,8 @@ setup(
         'inflection==0.3.1',
         'python-digitalocean==1.14.0',
         'python-dotenv==0.10.3',
-        'tox'
+        'pytest',
+        'tox',
     ],
     zip_safe=False,
     include_package_data=True,

@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="eln",
-    version="0.0.0-beta.3",
+    version="0.0.0-beta.4",
     author="Leo Neto",
     author_email="apps@lehvitus.com",
     url="https://github.com/lehvitus/eln",
@@ -39,7 +39,8 @@ setup(
         'inflection==0.3.1',
         'python-digitalocean==1.14.0',
         'python-dotenv==0.10.3',
-        'tox'
+        'pytest',
+        'tox',
     ],
     zip_safe=False,
     include_package_data=True,

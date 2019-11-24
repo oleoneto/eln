@@ -2,10 +2,11 @@
 
 A command-line tool for quick math computations
 
-![PyPI - License](https://img.shields.io/pypi/l/eln?style=flat-square)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/eln?style=flat-square)
-![PyPI](https://img.shields.io/pypi/v/eln?style=flat-square)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/eln?style=flat-square)
+![PyPI - License](https://img.shields.io/pypi/l/eln)
+![PyPI - Version](https://img.shields.io/pypi/v/eln)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/eln)
+![Github - Issues](https://img.shields.io/github/issues/lehvitus/eln)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/eln)
 
 - [eln](#eln)
     - [Requirements](#requirements)

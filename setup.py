@@ -7,9 +7,9 @@ with open("README.md", "r") as f:
 
 setup(
     name="eln",
-    version="0.0.0-beta.4",
+    version="0.0.0-beta.5",
     author="Leo Neto",
-    author_email="apps@lehvitus.com",
+    author_email="projects@lehvitus.com",
     url="https://github.com/lehvitus/eln",
     description="A command-line tool for quick access to web services",
     long_description=long_description,

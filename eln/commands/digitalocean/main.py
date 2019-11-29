@@ -17,7 +17,7 @@ def digitalocean(ctx, token):
     """
 
     if not token:
-        log_error("Missing DIGITAL_OCEAN_API_TOKEN.")
+        log_error("Missing DIGITAL_OCEAN_API_TOKEN in environment.")
         raise click.Abort
 
     ctx.ensure_object(dict)
@@ -58,10 +58,7 @@ def domains(ctx, register):
 
     for d in __domains:
         log_standard(
-            f"""
-            Domain name: {d.name}
-            Domain TTL: {d.ttl}
-            """
+            f"""Domain name: {d.name}\nDomain TTL: {d.ttl}"""
         )
 
 
@@ -125,11 +122,7 @@ def droplets(ctx, shutdown, inspect, start):
 
     for d in __droplets:
         log_standard(
-            f"""
-            Droplet id: {d.id}
-            Droplet name: {d.name}
-            Status: {d.status}
-            ---------------------
+            f"""Droplet id: {d.id}\nDroplet name: {d.name}\nStatus: {d.status}
             """
         )
 

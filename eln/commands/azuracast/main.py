@@ -1,16 +1,22 @@
 import click
 from .client import AzuraClient
+from eln.helpers.logger import log_error
 
 
 @click.group()
+@click.option('--token', envvar='AZURACAST_API_KEY')
 @click.pass_context
-def azuracast(ctx):
+def azuracast(ctx, token):
     """
         Manage your Azuracast installation.
     """
 
+    if not token:
+        log_error("Missing AZURACAST_API_KEY in environment.")
+        raise click.Abort
+
     ctx.ensure_object(dict)
-    ctx.obj['client'] = AzuraClient()
+    ctx.obj['client'] = AzuraClient(api_token=token)
 
 
 @azuracast.command()

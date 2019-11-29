@@ -1,19 +1,24 @@
 import click
 from .client import NewsClient
+from eln.helpers.logger import log_error
 
 
 @click.group()
-@click.option('--api-key', envvar='NEWS_API_KEY')
+@click.option('--token', envvar='NEWS_API_KEY')
 @click.option('--speak', is_flag=True)
 @click.option('--full', is_flag=True)
 @click.option('--debug/--no-debug', is_flag=True, default=False)
 @click.pass_context
-def news(ctx, api_key, speak, debug, full):
+def news(ctx, token, speak, debug, full):
     """
     News powered by NewsAPI.org
 
     https://newsapi.org
     """
+
+    if not token:
+        log_error("Missing NEWS_API_KEY in environment.")
+        raise click.Abort
 
     if debug:
         click.secho("Running in debug mode...", fg='yellow')
@@ -24,7 +29,7 @@ def news(ctx, api_key, speak, debug, full):
     ctx.obj['headlines_only'] = not full
 
     ctx.obj['client'] = NewsClient(
-        api_key=api_key,
+        api_key=token,
         speak=speak,
         debug=debug,
         headlines_only=ctx.obj['headlines_only']

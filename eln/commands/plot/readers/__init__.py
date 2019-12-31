@@ -1,7 +1,7 @@
 """Read data files in different formats"""
 import json as jsonlib
 import pandas as pd
-from eln.decorators import register_reader, READERS as _READERS
+from eln.decorators.register_reader import register_reader, READERS as _READERS
 
 
 class UnsupportedFileFormatError(TypeError):

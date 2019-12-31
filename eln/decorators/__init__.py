@@ -1,10 +1,3 @@
 # eln:decorators
-
-
-READERS = dict()
-
-
-# Decorator for adding reader functions
-def register_reader(function):
-    READERS[function.__name__] = function
-    return function
+from .register_reader import register_reader
+from .weather_provider import weather_provider

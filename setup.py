@@ -13,7 +13,7 @@ setup(
     description="A command-line tool for quick access to web services",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    keywords="cli command line tools miscellaneous news weather digitalocean s3 aws",
+    keywords="cli command line tools miscellaneous news forecast weather digitalocean s3 aws uploads",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',

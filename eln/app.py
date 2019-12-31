@@ -23,8 +23,9 @@ class CLI(click.MultiCommand):
 
         for func, path in commands.items():
             # Only include top-level commands
+            # Skip packages beginning or ending in underscores (_)
             command = path.split('commands/')[-1].split('/')[0]
-            if command not in rv:
+            if command not in rv and not (command.startswith('_') or command.endswith('_')):
                 rv.append(func)
 
         rv.sort()
@@ -34,15 +35,17 @@ class CLI(click.MultiCommand):
         ns = {}
         fn = os.path.join(COMMANDS_FOLDER, name, 'main.py')
 
-        with open(fn) as f:
-            code = compile(f.read(), fn, 'exec')
-            eval(code, ns, ns)
+        try:
+            with open(fn) as f:
+                code = compile(f.read(), fn, 'exec')
+                eval(code, ns, ns)
+        except FileNotFoundError:
+            pass
 
         try:
             return ns[name]
         except KeyError:
-            log_error(f"Failed to load {name} commands")
-            raise click.Abort()
+            pass
 
 
 @click.command(cls=CLI)
@@ -64,6 +67,10 @@ def cli(ctx):
     #
     #   Access your command like so:
     #   `eln my-command my-sub-command`
+    #
+    #   If you would like to skip a plugin,
+    #   simply rename the package by either prepending or an underscore (_)
+    #   and any code contained within the package will be ignored.
 
 
 if __name__ == '__main__':

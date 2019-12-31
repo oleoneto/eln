@@ -5,6 +5,7 @@
 *.pyc
 pycache
 *wheel*
+.DS_Store
 
 # Test project
 A

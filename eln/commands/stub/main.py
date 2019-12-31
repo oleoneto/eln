@@ -1,9 +1,9 @@
 import click
 import os
-from .helpers import CreatorHelper
-from .bottle import bottle
-from .cpp import cpp
-from .package import package
+from eln.commands.stub.helpers import CreatorHelper
+from eln.commands.stub.bottle import bottle
+from eln.commands.stub.cpp import cpp
+from eln.commands.stub.package import package
 
 
 @click.group()

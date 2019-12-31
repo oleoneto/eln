@@ -1,5 +1,5 @@
 import click
-from .client import NewsClient
+from eln.commands.news.client import NewsClient
 from eln.helpers.logger import log_error
 
 

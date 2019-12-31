@@ -1,5 +1,5 @@
 import click
-from .client import AzuraClient
+from eln.commands.azuracast.client import AzuraClient
 from eln.helpers.logger import log_error
 
 

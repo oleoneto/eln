@@ -14,7 +14,9 @@ A command-line tool for quick math computations
     - [Commands](#commands)
         - [Azuracast](#azuracast)
         - [DigitalOcean](#digitalocean)
+        - [Forecast](#forecast)
         - [News API](#news-api)
+        - [Plot](#plot)
         - [Stub](#stub)
     - [To Do](#issues)
     - [Pull requests](#pull-requests)
@@ -35,8 +37,14 @@ Manage your Azuracast installation.
 ### DigitalOcean
 DigitalOcean API Wrapper.
 
+### Forecast
+Get weather forecasts.
+
 ### News API
 News powered by [NewsAPI.org](https://newsapi.org)
+
+### Plot
+Plot numerical data with Pandas.
 
 ### Stub
 Stub out sample projects.

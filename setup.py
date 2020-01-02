@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="eln",
-    version="0.0.0-beta.6",
+    version="0.0.0-beta.7",
     author="Leo Neto",
     author_email="projects@lehvitus.com",
     url="https://github.com/lehvitus/eln",

@@ -14,10 +14,10 @@ A command-line tool for quick math computations
     - [Commands](#commands)
         - [Azuracast](#azuracast)
         - [DigitalOcean](#digitalocean)
-        - [Forecast](#forecast)
         - [News API](#news-api)
         - [Plot](#plot)
         - [Stub](#stub)
+        - [Weather](#weather)
     - [To Do](#issues)
     - [Pull requests](#pull-requests)
     - [License](#license)
@@ -31,13 +31,14 @@ pip install eln
 ```
 
 ## Commands
+
 ### Azuracast
 Manage your Azuracast installation.
 
 ### DigitalOcean
 DigitalOcean API Wrapper.
 
-### Forecast
+### Weather
 Get weather forecasts.
 
 ### News API

@@ -1,7 +1,6 @@
 import click
 import os
 from dotenv import load_dotenv
-from eln.helpers.logger import log_error
 
 load_dotenv()
 
@@ -56,6 +55,8 @@ def cli(ctx):
 
         A command-line tool for miscellaneous tasks.
     """
+
+    ctx.ensure_object(dict)
 
     # Note for contributors:
     #

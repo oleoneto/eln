@@ -1,4 +1,5 @@
-# commands:forecast:providers
+# commands:weather:providers
+import requests
 from eln.decorators.weather_provider import weather_provider, PROVIDERS
 
 

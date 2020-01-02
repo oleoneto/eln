@@ -4,4 +4,4 @@ from eln.commands.azuracast import azuracast
 from eln.commands.stub import stub
 from eln.commands.digitalocean import digitalocean
 from eln.commands.plot import plot
-from eln.commands.forecast import forecast
+from eln.commands.weather import weather

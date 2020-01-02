@@ -56,5 +56,5 @@ setup(
             'e=eln.app:cli',
         ]
     },
-    scripts=['app.py']
+    scripts=['eln/app.py']
 )

@@ -4,17 +4,16 @@ from setuptools import find_packages, setup
 with open("README.md", "r") as f:
     long_description = f.read()
 
-
 setup(
     name="eln",
-    version="0.0.0-beta.5",
+    version="0.0.0-beta.7",
     author="Leo Neto",
     author_email="projects@lehvitus.com",
     url="https://github.com/lehvitus/eln",
     description="A command-line tool for quick access to web services",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    keywords="cli command line tools miscellaneous news weather digitalocean s3 aws",
+    keywords="cli command line tools miscellaneous news forecast weather digitalocean s3 aws uploads",
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
@@ -36,6 +35,8 @@ setup(
         'requests==2.22.0',
         'pyttsx3==2.71;platform_system=="MacOS"',
         'jinja2==2.10.3',
+        'pandas',
+        'matplotlib',
         'inflection==0.3.1',
         'python-digitalocean==1.14.0',
         'python-dotenv==0.10.3',
@@ -50,8 +51,9 @@ setup(
         "Source Code": "https://github.com/lehvitus/eln/",
     },
     entry_points={
+        'eln.commands': '',
         'console_scripts': [
-            'eln=app:main',
+            'e=eln.app:cli',
         ]
     },
     scripts=['app.py']

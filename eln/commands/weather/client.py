@@ -3,7 +3,9 @@
 import requests
 from enum import Enum, auto, unique
 from datetime import datetime
+from gettext import gettext as _
 from eln.helpers.time import Week
+from eln.decorators import timed
 
 
 @unique
@@ -47,13 +49,14 @@ WEATHER_FORECAST = \
 
 class WeatherClient:
 
-    def __init__(self, api_key, location, unit):
+    def __init__(self, api_key, location, language, unit):
         self.__api_key = api_key
         self.__location = location
+        self.__language = language
         self.__unit = unit
         self.__query = 'id=' if self.__location.isnumeric() else 'q='
         self.__scope = 'weather'
-        self.__endpoint = 'https://api.openweathermap.org/data/2.5/{scope}?{query}{location}&APPID={api_key}'
+        self.__endpoint = 'https://api.openweathermap.org/data/2.5/{scope}?{query}{location}&lang={language}&APPID={api_key}'
 
     def _convert_temperature(self, temperature):
         # Converts temperature from K to Celsius or Fahrenheit
@@ -70,6 +73,7 @@ class WeatherClient:
                 scope='weather',
                 query=self.__query,
                 location=self.__location,
+                language=self.__language,
                 api_key=self.__api_key
             )
         )
@@ -81,7 +85,7 @@ class WeatherClient:
 
         return WEATHER_TODAY.format(
             unit=self.__unit.value,
-            description=res['weather'][0]['description'].capitalize(),
+            description=res['weather'][0]['description'].title(),
             temperature=temperature,
             min_temperature=min_temperature,
             max_temperature=max_temperature,
@@ -89,7 +93,7 @@ class WeatherClient:
             wind_speed=res['wind']['speed'],
             sunrise=datetime.fromtimestamp(res['sys']['sunrise']).time(),
             sunset=datetime.fromtimestamp(res['sys']['sunset']).time(),
-        )
+        ), res['name']
 
     def get_forecast(self):
         req = requests.get(
@@ -97,6 +101,7 @@ class WeatherClient:
                 scope='forecast',
                 query=self.__query,
                 location=self.__location,
+                language=self.__language,
                 api_key=self.__api_key
             )
         )
@@ -109,14 +114,13 @@ class WeatherClient:
             min_temperature = self._convert_temperature(day['main']['temp_min'])
             max_temperature = self._convert_temperature(day['main']['temp_max'])
             date = day['dt_txt']
-            w = datetime.fromisoformat(date).weekday()
-            weekday = list(Week)[w]
+            weekday = list(Week)[datetime.fromisoformat(date).weekday()]
 
             weather_forecast.append(
                 WEATHER_FORECAST.format(
                     date=f"{weekday.value} - {date}",
                     unit=self.__unit.value,
-                    description=day['weather'][0]['description'].capitalize(),
+                    description=day['weather'][0]['description'].title(),
                     temperature=temperature,
                     min_temperature=min_temperature,
                     max_temperature=max_temperature,
@@ -124,4 +128,4 @@ class WeatherClient:
                 )
             )
 
-        return weather_forecast
+        return weather_forecast, res['city']['name']

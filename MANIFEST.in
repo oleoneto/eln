@@ -1,4 +1,7 @@
 include README.md
 include .gitignore
 recursive-include eln
-recursive-include tests *.json *.py *.txt *.tpl
+recursive-include eln / *.tpl
+recursive-include eln / *.json
+recursive-include eln / *.txt
+recursive-include tests

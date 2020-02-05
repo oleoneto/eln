@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 eln = {editable = true,path = "."}
+pylint = "*"
 
 [packages]
 click = "==7.0"

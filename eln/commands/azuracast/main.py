@@ -44,16 +44,14 @@ def now_playing(ctx):
 
 @azuracast.command()
 @click.argument('message', required=False)
-@click.option('--now-playing', is_flag=True)
+@click.argument('avenue', type=click.Choice(['slack', 'telegram', 'all']))
+@click.argument('station', nargs=1, required=False)
+@click.option('--force', is_flag=True)
 @click.pass_context
-def notify(ctx, message, now_playing):
+def notify(ctx, message, force, avenue, station):
     """
         Send station notifications via Telegram.
     """
     client = ctx.obj['client']
 
-    if now_playing:
-        client.notify_now_playing()
-
-    else:
-        client.notify(message=message)
+    client.notify(avenue=avenue, message=message, station=station, force=force)

@@ -1,11 +1,14 @@
 import os
 import click
+from pprint import pprint
+import json
 import requests
 from eln.helpers.logger import log_standard, log_error
 from .templates import (
     notification_template,
     tracks_template,
-    stations_template
+    stations_template,
+    slack_message,
 )
 
 
@@ -16,12 +19,14 @@ class AzuraClient:
             api_token=None,
             endpoint=None,
             telegram_token=None,
-            telegram_chat=None
+            telegram_chat=None,
+            slack_token=None,
     ):
         self.__token = api_token if api_token else os.environ.get('AZURACAST_API_KEY')
         self.__station_endpoint = endpoint if endpoint else os.environ.get('AZURACAST_STATION_ENDPOINT')
         self.__headers = {'X-API-Key': '{}'.format(self.__token)}
         self.__telegram_token = telegram_token if telegram_token else os.environ.get('TELEGRAM_KEY')
+        self.__slack_token = slack_token if slack_token else os.environ.get('SLACK_TOKEN')
         self.__telegram_chat = telegram_chat if telegram_chat else os.environ.get('TELEGRAM_CHAT')
         self.__telegram_endpoint = 'https://api.telegram.org/bot{}/sendMessage'.format(self.__telegram_token)
         self.__data = {}
@@ -47,8 +52,20 @@ class AzuraClient:
 
         self.__list_now_playing()
 
-    def notify(self, message, force=False):
-
+    def __send_to_slack(self, data):
+        url = f'https://hooks.slack.com/services/{self.__slack_token}'
+        content = slack_message.render(
+            history=data['history'],
+            radio=data['name'],
+            url=data['url'],
+            title=data['title'],
+            artist=data['artist'],
+        )
+        json_content = json.loads(content)
+        _ = requests.post(url=url, json=json_content)
+        return _.status_code
+    
+    def __send_to_telegram(self, data):
         try:
             self.__ensure_environment_variables_for_telegram()
         except EnvironmentError:
@@ -57,20 +74,31 @@ class AzuraClient:
 
         url = self.__telegram_endpoint
 
+        message = notification_template.render(
+            name=data['name'],
+            url=data['url'],
+            title=data['title'],
+            artist=data['artist'],
+        )
+
         params = {
             "chat_id": f"{self.__telegram_chat}",
             "text": f"{message}",
             "parse_mode": "Markdown"
         }
 
+        _ = requests.post(url=url, params=params)
+        return _.status_code
+
+    def notify(self, avenue, message=None, station=None, force=False):
         if message is None:
             log_error("Message cannot be empty")
             raise click.Abort
 
-        if force or click.confirm(f"You're about to send the following message: \n\n\t{message}\n\nContinue?"):
-            _ = requests.post(url=url, params=params)
+        if message.replace(' ', '_') in ['now_playing', 'playing']:
+            self.notify_now_playing(avenue=avenue, station=station)
 
-    def notify_now_playing(self):
+    def notify_now_playing(self, avenue, station=None):
         url = self.__station_endpoint + 'nowplaying'
 
         self.__data = requests.get(url, self.__headers).json()
@@ -80,21 +108,36 @@ class AzuraClient:
             url = data['station']['listen_url']
             now_playing = data['now_playing']
             now = now_playing['song']
+            song_history = data['song_history']
 
-            message = notification_template.render(
-                name=name,
-                url=url,
-                title=now['title'],
-                artist=now['artist'],
-            )
+            history = [song['song'] for song in song_history]
 
-            self.notify(message=message, force=True)
+            check = station is None
+
+            if station is not None:
+                comparable_source_name = name.lower().replace(' ', '_')
+                comparable_input_name = station.lower().replace(' ', '_')
+                check = comparable_input_name == comparable_source_name
+
+            if check:
+                data = {
+                    'history': history,
+                    'name': name,
+                    'url': url,
+                    'title': now['title'],
+                    'artist': now['artist'],
+                }
+
+                if avenue in ['all', 'telegram']:
+                    self.__send_to_telegram(data=data)
+                if avenue in ['all', 'slack']:
+                    self.__send_to_slack(data=data)
 
     def data(self):
         return self.__data
 
     def __list_now_playing(self):
-        for index, data in enumerate(self.__data):
+        for _, data in enumerate(self.__data):
             station = data['station']
             listeners = data['listeners']['total']
             now_playing = data['now_playing']

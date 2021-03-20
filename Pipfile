@@ -10,7 +10,7 @@ eln = {editable = true,path = "."}
 click = "==7.0"
 inflection = "==0.3.1"
 tox = "==3.14.0"
-Jinja2 = "==2.10.3"
+Jinja2 = "==2.11.3"
 requests = "*"
 pyttsx3 = "*"
 python-digitalocean = "*"
